@@ -8,7 +8,7 @@ namespace ListApp.Repository
     public interface IDataRepository
     {
         List<MedicineData> GetMedicines();
-        void AddMedicine(MedicineData medicineData);
+        int AddMedicine(MedicineData medicineData);
         MedicineData GetById(int id);
     }
 }

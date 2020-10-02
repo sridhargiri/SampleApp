@@ -13,11 +13,12 @@ namespace ListApp.Repository
         {
             //list.Add(new MedicineData { Id = 1, Brand = "m1", ExpiryDate = DateTime.Now, Notes = "g", Price = 5, Quantity = 9 });
         }
-        public void AddMedicine(MedicineData medicine)
+        public int AddMedicine(MedicineData medicine)
         {
 
             medicine.Id = random.Next(1000);
             list.Add(medicine);
+            return medicine.Id;
         }
 
         public MedicineData GetById(int id)
