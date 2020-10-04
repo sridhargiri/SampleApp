@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
+import DatePicker from "react-datepicker";
+ 
+import "react-datepicker/dist/react-datepicker.css";
+
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -7,12 +11,20 @@ import axios from 'axios'
 class Add extends React.Component {
  constructor(props) {
     super(props);
-    this.state = { brand: '' ,price:'',quantity:'',notes:''};
+    this.state = { brand: '' ,price:'',quantity:'',notes:'',expiryDate:new Date()};
+    this.handleChange = this.handleChange.bind(this);
+    this.toggleShowHide = this.toggleShowHide.bind(this);
     
   }
 handleChange = (event) => {
     this.setState({[event.target.name]: event.target.value});
   }
+
+toggleShowHide = m => {
+    this.setState({ expiryDate: m });
+    console.log('dat',this.state.expiryDate);
+  };
+
   myChangeHandler = (event) => {
     
     let nam = event.target.name;
@@ -29,10 +41,10 @@ handleChange = (event) => {
     alert("You are submitting " + this.state.username);
   }
 
-  
   handleSubmit = (event) => {
     console.log('A form was submitted: ', this.state);
 
+console.log('child',React.Children.map(this.props.children, child => child.props.data));
     fetch('https://localhost:44390/Medicine/Save', {
         method: 'POST', 
         body: JSON.stringify(this.state),
@@ -79,6 +91,13 @@ handleChange = (event) => {
         name='notes'
         onChange={this.handleChange}
       />
+      <p>Expiry</p>
+<DatePicker
+              selected={ this.state.expiryDate }
+              onChange={ this.toggleShowHide }
+              name="expiryDate"
+              dateFormat="MM/dd/yyyy"
+          />
       <input type="submit" value="Submit" />
       </form></div>
     );

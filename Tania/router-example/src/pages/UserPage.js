@@ -41,7 +41,7 @@ export default function UserPage(props) {
           </tr>
         </thead> <tbody>
         {user.map((item,i) =>       
-          <tr key={i} style={{backgroundColor:item.quantity<10?'yellow':'white'}}>
+          <tr key={i} style={{backgroundColor:item.quantity<10?'yellow':item.isRed?'red':'white'}}>
             <td> 
 <Link to={`/view/${item.id}`}> {item.brand}</Link>
             </td>

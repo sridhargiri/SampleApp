@@ -18,5 +18,6 @@ namespace ListApp
         public int Quantity { get; set; }
 
         public string Notes { get; set; }
+        public bool IsRed { get { return (ExpiryDate - DateTime.Today).TotalDays <= 30; } }
     }
 }

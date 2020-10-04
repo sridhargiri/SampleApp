@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 
+
+
+
 export default function View(props) {
   
   const initialUserState = {
@@ -59,7 +62,8 @@ function togglePop() {
         <p>Notes: (<a  onClick={togglePop} href="#">edit</a>)</p>
          <span className="form-field">
       { data.notes }</span>
-      {seen ? <PopUp toggle={togglePop} /> : null}
+ <PopUp toggle={togglePop} />
+ 
 </div>
     );
 

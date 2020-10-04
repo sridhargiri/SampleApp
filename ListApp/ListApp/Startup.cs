@@ -29,12 +29,7 @@ namespace ListApp
             services.AddSingleton<IDataRepository, DataRepository>();
             services.AddControllers().AddNewtonsoftJson();
             // Add Cors
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,8 +43,8 @@ namespace ListApp
             app.UseHttpsRedirection();
            
             app.UseRouting();
- // Enable Cors
-            app.UseCors("MyPolicy");
+            // Enable Cors
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
